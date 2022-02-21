@@ -7,7 +7,16 @@ function orderPizza($pizzaType, $client) {
     $orderText = 'A';
     $orderText .= $pizzaType;
     $pizza = priceCalculator($type);
-    $address = 'unknown';
+    $address = '';
+
+    getAddress($client);
+
+    $orderText .= ' pizza should be sent to ' . $client . ". <br>The address: {$address}.";
+    print_r($orderText);
+    print_r('<br>'.'the bill is €' . $pizza .'.<br>'.'Order finished.<br><br>');
+}
+
+function getAddress ($client) {
 
     if ($client == 'koen') {
         $address = 'a yacht in Antwerp';
@@ -20,12 +29,7 @@ function orderPizza($pizzaType, $client) {
     elseif ($client == 'students') {
         $address = 'BeCode office';
     }
-
-    $orderText .= ' pizza should be sent to ' . $client . ". <br>The address: {$address}.";
-    print_r($orderText);
-    print_r('<br>');
-    print_r('The bill is €' . $pizza . '.<br>');
-    print_r("Order finished.<br><br>");
+    return $address;
 }
 
 /**
